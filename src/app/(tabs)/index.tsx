@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View } from "react-native";
+import MediaListItem from "@/components/MediaListItem";
 
 export default function HomeScreen() {
   return (
     <View>
-      <Text>glory To Jesus!</Text>
+      <MediaListItem />
     </View>
-  )
+  );
 }
