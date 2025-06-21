@@ -1,5 +1,5 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from "@expo/vector-icons";
 
 type MediaInfoProps = {
   title: string;
@@ -9,7 +9,8 @@ type MediaInfoProps = {
   description: string;
   type: string;
   nrOfSeasons?: number;
-}
+  onPlayMediaPressed: () => void;
+};
 
 export default function MediaInfo(props: MediaInfoProps) {
   const {
@@ -20,6 +21,7 @@ export default function MediaInfo(props: MediaInfoProps) {
     description,
     type,
     nrOfSeasons,
+    onPlayMediaPressed,
   } = props;
 
   return (
@@ -28,52 +30,51 @@ export default function MediaInfo(props: MediaInfoProps) {
       <View style={styles.headerContainer}>
         <Text style={styles.metaInfoText}>{releaseYear}</Text>
         <Text style={styles.ageText}>{ageRestriction}</Text>
-        <Text style={styles.metaInfoText}>{type === "MOVIE" ? `${duration}min` : `${nrOfSeasons} season`}</Text>
+        <Text style={styles.metaInfoText}>
+          {type === "MOVIE" ? `${duration}min` : `${nrOfSeasons} seasons`}
+        </Text>
       </View>
 
-      <Pressable
-        style={styles.playButton}
-        onPress={() => console.log('Pressed')}
-      >
+      <Pressable style={styles.playButton} onPress={() => onPlayMediaPressed()}>
         <FontAwesome name="play" size={20} color="black" />
-        <Text style={{ fontWeight: '600' }}>Play</Text>
+        <Text style={{ fontWeight: "600" }}>Play</Text>
       </Pressable>
 
-      <Text style={{ color: 'white' }}>{description}</Text>
+      <Text style={{ color: "white" }}>{description}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   playButton: {
-    backgroundColor: 'lightgrey',
+    backgroundColor: "lightgrey",
     borderRadius: 3,
     padding: 7,
-    justifyContent: 'center',
-    flexDirection: 'row',
+    justifyContent: "center",
+    flexDirection: "row",
     gap: 8,
     marginVertical: 10,
-    alignItems: 'center'
+    alignItems: "center",
   },
   title: {
-    color: 'white',
+    color: "white",
     fontSize: 18,
-    fontWeight: '600',
-    letterSpacing: 0.5
+    fontWeight: "600",
+    letterSpacing: 0.5,
   },
   ageText: {
-    color: 'white',
+    color: "white",
     fontSize: 9,
     padding: 2,
-    backgroundColor: '#636363',
-    borderRadius: 2
+    backgroundColor: "#636363",
+    borderRadius: 2,
   },
   metaInfoText: {
-    color: 'white',
-    fontSize: 12
+    color: "white",
+    fontSize: 12,
   },
   headerContainer: {
-    flexDirection: 'row',
-    gap: 5
-  }
+    flexDirection: "row",
+    gap: 5,
+  },
 });
